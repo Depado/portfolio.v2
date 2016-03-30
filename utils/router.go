@@ -10,7 +10,7 @@ import (
 
 // InitAssetsTemplates initializes the router to use either a ricebox or the
 // filesystem in case the ricebox couldn't be found.
-func InitAssetsTemplates(r *gin.Engine, tbox, abox *rice.Box, verbose bool, names ...string) error {
+func InitAssetsTemplates(r *gin.Engine, tbox, abox *rice.Box, names ...string) error {
 	var err error
 
 	if tbox != nil {

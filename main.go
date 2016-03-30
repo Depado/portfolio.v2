@@ -4,13 +4,24 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Depado/portfolio/utils"
 	"github.com/GeertJohan/go.rice"
 	"github.com/gin-gonic/gin"
+
+	"github.com/Depado/portfolio.v2/fetch"
+	"github.com/Depado/portfolio.v2/utils"
 )
+
+func index(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"services":   fetch.Current,
+		"monit_root": fetch.MONITROOT,
+	})
+}
 
 func main() {
 	var err error
+
+	go fetch.Start()
 
 	tbox, _ := rice.FindBox("templates")
 
@@ -19,8 +30,6 @@ func main() {
 	if err = utils.InitAssetsTemplates(r, tbox, nil, "index.html"); err != nil {
 		log.Fatal(err)
 	}
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{})
-	})
+	r.GET("/", index)
 	r.Run(":8005")
 }
