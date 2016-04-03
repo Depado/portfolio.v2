@@ -18,6 +18,13 @@ func index(c *gin.Context) {
 	})
 }
 
+func ascii(c *gin.Context) {
+	c.HTML(http.StatusOK, "about.html", gin.H{
+		"services":   fetch.Current,
+		"monit_root": fetch.MONITROOT,
+	})
+}
+
 func main() {
 	var err error
 
@@ -27,9 +34,10 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
-	if err = utils.InitAssetsTemplates(r, tbox, nil, "index.html"); err != nil {
+	if err = utils.InitAssetsTemplates(r, tbox, nil, "index.html", "about.html"); err != nil {
 		log.Fatal(err)
 	}
 	r.GET("/", index)
+	r.GET("/about", ascii)
 	r.Run(":8005")
 }
