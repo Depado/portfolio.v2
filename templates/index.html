@@ -115,10 +115,12 @@
                     </div>
                     {{ end }}
                 </div>
-                <br /><br />
+                <br />
+                <br />
                 <div class="ui container">
                     <p>
-                        The color of the card determines whether or not the service is running. Green if the service is up, red if the service isn't. Clicking on the build status will get you to the build server. To access the service, simply click on the short url written under the project's name.
+                        The color of the card determines whether or not the service is running. Green if the service is up, red if the service isn't. Clicking on the build status will get you to the build server. To access the service, simply click on the short url written under
+                        the project's name.
                     </p>
                 </div>
             </div>
@@ -153,7 +155,9 @@
             new mojs.Transit({
                 parent: burstEl,
                 type: 'circle',
-                radius: {0: 30 + (Math.random() * 70)},
+                radius: {
+                    0: 30 + (Math.random() * 70)
+                },
                 fill: 'transparent',
                 stroke: 'white',
                 strokeWidth: strokeWidth,
@@ -168,7 +172,7 @@
                     this.el.parentNode.removeChild(this.el);
                 }
             });
-        }, 200 + Math.random() * 100);
+        }, 300);
     </script>
 </body>
 

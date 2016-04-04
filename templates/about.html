@@ -16,7 +16,16 @@
             line-height: 1.6;
             font-size: 18px;
             color: #444;
-            padding: 0 10px
+            padding: 0 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: grey;
+        }
+
+        a:hover {
+            color: #444;
         }
 
         h1,
@@ -29,12 +38,21 @@
 
 <body>
     <h1>Depado</h1>
-    <h2>Paul Lhussiez</h2>
-    <h2>Developer, Geek, New Technologies Enthusiast</h2>
+    <h2>Philosophy, mentality and other things</h2>
     <br />
-    <h3>About this page</h3>
-    <pre>“Oh my god, all the CSS and JS is gone ! Such a bad developer…”</pre>
-    <p>No. It's a choice. It's not a bug it's a feature.</p>
+    <ul>
+        <li><a href="#about">About this page</a></li>
+        <li><a href="#opensource">Open Source. Open Source EVERYTHING !</a></li>
+        <li><a href="#reasons">Reasons to publicly open-source your code</a></li>
+        <li><a href="#licenses">Licenses</a></li>
+        <li><a href="#linux">Linux</a></li>
+        <li><a href="#troll">Troll</a></li>
+    </ul>
+    <br />
+    <h3 id="about">About this page.</h3>
+    <p>
+        So this page doesn't contain much CSS, and doesn't contain JS.
+    </p>
     <p>
         Why would I do that ? Is it to show a total lack of inspiration in the design of my personal website ? Or maybe it's because I actually want to prove that really, deep down in my heart I'm just a backend developer ?
     </p>
@@ -45,7 +63,7 @@
         OK. There is some CSS in there, I'm even using the Roboto font. After all I still like to do pretty things.
     </p>
     <br />
-    <h3>Open Source. Open Source EVERYTHING !</h3>
+    <h3 id="opensource">Open Source. Open Source EVERYTHING !</h3>
     <p>
         I believe in the open-source world. I believe in the community. I believe that someday the stuff I made when I was 23 will be somewhat useful to a little guy trying to learn things in the future. Why not after all ?
     </p>
@@ -53,10 +71,99 @@
         It's all about helping people. Or let's put it another way, it's all about hoping that one day someone will find what I created useful. Not just the service or whatever the project is, but also the codebase. Getting inspired, learning new things.
     </p>
     <p>
-        Having your code open-source isn't everything. I think about the community first, I think that maybe someone will want to host the same service as I am right now. I put a lot of efforts to do things people can install easily.
+        Having your code open-source isn't everything. I think about the community first, I think that maybe someone will want to host the same service as I am right now. I put a lot of efforts to do things people can install easily. Actually that's even a huge
+        part of my development time, making the whole application configurable.
     </p>
     <p>
-        I mean alright, if someone wants the same thing as you, why don't they just take the code, modify it to fit their needs ? Problem solved. That's not the way I think.
+        I mean alright, if someone wants the same thing as you, why don't they just take the code, modify it to fit their needs ? Problem is, that's not the way I think. I think about sharing first.
+    </p>
+    <br />
+    <h3 id="reasons">Reasons to publicly publish your code</h3>
+    <p><i>“I can't publish my code on Github it's not finished yet, people will think I'm a bad developer”</i></p>
+    <p>
+        Two points here :
+    </p>
+    <ul>
+        <li>Either you're super-famous, already have hundreds of followers on github, and really care about your reputation.</li>
+        <li>Or you're not, and no one is going to notice your repo and shame you on the code you made in your first commit.</li>
+    </ul>
+    <p>
+        I made really shitty code when I started to code. It's all on Github. All of it. Any small project I make is on Github from day one. Because I actually don't care what people think of my code. In the end I'm proud of the things I do. In the end I don't
+        care what my first commit looked like.
+    </p>
+    <p>
+        It just proves you can progress, work your ass off to make something nice. Someday I'm going to look back at the first code I ever published on Github and laugh. Not just about how bad I was at this, but also it will make me realise how much I have progressed.
+    </p>
+    <p>
+        Seriously, Github (or any other code versionning platform) isn't going to put you under a spotlight and tell everyone “Hey look, this guy made his first commit, let's all laugh at him/her !”. There are thousands of users on github, new users everyday,
+        repositories are created every second. So yeah it has a really little importance that your first commit, your first repository isn't a finished project. My first project on Github isn't even finished, and I think only one or two really are and
+        are production ready. I don't care.
+    </p>
+    <p>
+        Because like I said, what's important here isn't about the impression you give others, it's the way you can help them, inspire them, show them, teach them. If I were a recruiter and I was presented two persons, with the exact same skill set, one with
+        a Github with loads of unfinished projects, and the other without a Github, I'd automatically choose the one with the Github account.
+    </p>
+    <p>
+        It's not just a way to do things, versionning your code is a very good practice, it's also a way to think. Thinking about community, thinking that sharing your knowledge is something really important.
+    </p>
+    <br />
+    <h3 id="licenses">Licenses</h3>
+    <p>
+        One thing people ask often is something like “How can I prevent people to use my project to make money ?”. Spoiler alert : I don't know. And I don't care.
+    </p>
+    <p>
+        The licenses I use the most are the MIT License, and the WTFPL. The second one is the most interesting, it litteraly have a single statement : “You just DO WHAT THE FUCK YOU WANT TO.”.
+    </p>
+    <p>
+        That's the way things work. Some people will definitely make some money with your sources, at one point. Either they'll just copy part of your code, or import a lib you made… It's up to you to choose a license you like. Some licenses force users to do
+        open-source if they use your lib/soft. Personnaly I don't care. If my work can help other people, then fine.
+    </p>
+    <p>
+        What I'm about to say will piss some people off : I don't really care about licenses on my own projects. I don't want to force people to adopt my point of view about the open-source, I don't want them to feel bad about using a snippet they found in my
+        repo. Sure, if it wasn't for licenses, maybe the open-source world wouldn't even exist.
+    </p>
+    <p>
+        I just want to make something clear : I don't do open-source for ANY other reason than to share with the world. I don't want to force my view of the world to people, I don't want to be recognised, I just do it for the pure pleasure to share. Simply that.
+    </p>
+    <br />
+    <h3 id="linux">Linux</h3>
+    <p>
+        I'm a Linux user, I administrate Linux servers. I honnestly don't see how people can even develop on Windows. As I have no experience with Mac, I won't speak about it here.
+    </p>
+    <p>
+        Like everything else described in this document it's all about my personal point of view. I'm sure there are very good devs working on Windows environments. What I'm also sure is that a very good dev working on a Windows environment would be an excellent
+        dev on a Linux one.
+    </p>
+    <p>
+        Linux is all about automation, tweaking things to fit your exact needs. I'm using Gnome Shell as a desktop environment, I like pretty things. I don't care if it's heavier than an i3 environment, it suits my needs and I get shit done on it. And I honnestly
+        think the lack of love for eye-candy things in the Linux community is what makes it so “nerd”.
+    </p>
+    <p>
+        I'm running Archlinux. It's been four years that Arch is on my machine, I never resintalled it, not even once. There is always a solution, a good solution, to any one of your problem. It forces you to learn things and to understand how things work under
+        the hood.
+    </p>
+    <br />
+    <h3 id="troll">Troll</h3>
+    <p>
+        I'm a troll. Sometimes I'll just randomly bash a language, an idea or whatever, just for the pleasure to make people react. I hate PHP and I didn't even write a single line of it. It's goddamn 2016 seriously, it's time to think of the web as something
+        more than just a PHP script running in an heavy ass Apache.
+    </p>
+    <p>
+        I laughed so hard when PHP7 was announced, and people started to tell things like “A 16ms response time for a template rendering ! That's blazing fast !”. No it's not. Same thing in Go takes less than a millisecond. We're talking about microseconds here.
+        I mean do you even know how long it took to render this page ? 50.45µs. While PHP7 rendered a single page, I could render 320 pages. Time to move on.
+    </p>
+    <p>
+        So yeah, with PHP you can deploy with a FTP server. Do you think that's secure ? Do you think that's how you're supposed to handle your services in 2016 ?
+    </p>
+    <p>
+        Then some people are going to troll me on that. Telling me I should do C if I cared about performances. I do care about performances, but I also care about several other things. Security, development time, stability. I'm not a C kung-fu master, I don't
+        enjoy writing C as much as I enjoy writing Go. So yeah there is a garbage collector in Go, it hurts performances, on the other hand I don't manage my memory manually. Compromises.
+    </p>
+    <p>
+        <i>If you made it this far, you're now allowed to call me a Go fanboy.</i>
+    </p>
+    <p>
+        Anyway I'm a troll and if you're easily offended then too bad, it won't change any soon. And just to clarify things a bit more, I'm not easily offended.
     </p>
 </body>
 
