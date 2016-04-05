@@ -15,16 +15,20 @@ var MONITROOT = "https://monit.depado.eu"
 // LightService is a lighter representation of a running service
 // intented to be used in compliance with gomonit's models.Service
 type LightService struct {
-	Name       string
-	URL        string
-	ShortURL   string
-	RepoURL    string
-	Host       string
-	BuildURL   string
-	LastBuild  models.Build
-	LastCommit models.Commit
-	Status     int
-	Icon       string
+	Name         string
+	URL          string
+	ShortURL     string
+	RepoURL      string
+	Host         string
+	BuildURL     string
+	LastBuild    models.Build
+	LastCommit   models.Commit
+	Status       int
+	Icon         string
+	RepoStars    int
+	RepoForks    int
+	RepoWatchers int
+	Description  string
 }
 
 // Current is the actual running services that are displayed on the website
@@ -44,14 +48,18 @@ func Start() {
 				Current = []LightService{}
 				for _, s := range all {
 					new := LightService{
-						Name:     s.Name,
-						URL:      s.URL,
-						ShortURL: s.ShortURL,
-						RepoURL:  s.RepoURL,
-						Host:     s.Host,
-						BuildURL: s.BuildURL,
-						Status:   s.Status,
-						Icon:     s.Icon,
+						Name:         s.Name,
+						URL:          s.URL,
+						ShortURL:     s.ShortURL,
+						RepoURL:      s.RepoURL,
+						Host:         s.Host,
+						BuildURL:     s.BuildURL,
+						Status:       s.Status,
+						Icon:         s.Icon,
+						RepoStars:    s.RepoStars,
+						RepoForks:    s.RepoForks,
+						RepoWatchers: s.RepoWatchers,
+						Description:  s.Description,
 					}
 					if len(s.LastBuilds) > 0 {
 						new.LastBuild = s.LastBuilds[0]
