@@ -13,15 +13,6 @@
 </head>
 
 <body>
-    <div class="ui large top fixed hidden menu">
-        <div class="ui container">
-            <a class="active item">Home</a>
-            <a class="item">Work</a>
-            <a class="item">Company</a>
-            <a class="item">Careers</a>
-        </div>
-    </div>
-
     <!-- Sidebar Menu -->
     <div class="ui vertical inverted sidebar menu">
         <a class="active item">Home</a>
@@ -82,10 +73,6 @@
                     In this section I'll present to you some of my personnal projects. The data displayed here are automatically fetched using the API of my <a href="https://monit.depado.eu" target="_blank">monitoring service</a>. If you wish to get more
                     information on these projects you can either check the website, the github repository or the monitoring service which holds more data (commit history, build history, response time…)
                 </p>
-            </div>
-            <br />
-            <br />
-            <div class="ui container">
                 <div class="ui fluid centered cards">
                     {{ range $index, $element := .services }}
                     <div class="ui card {{ if eq .Status 200 }}green{{ else if eq .URL "" }}green{{ else }}red{{ end }}">
@@ -114,7 +101,7 @@
                             <i class="configure icon"></i> No Build {{ end }}
                         </div>
                         <div class="extra content" style="text-align: center;">
-                        {{ if .RepoURL }}
+                            {{ if .RepoURL }}
                             <a href="{{ .RepoURL }}/stargazers" target="_blank">
                                 <button class="ui tiny teal basic compact labeled icon button"><i class="star icon"></i>{{ .RepoStars }}</button>
                             </a>
@@ -124,11 +111,11 @@
                             <a href="{{ .RepoURL }}/watchers" target="_blank">
                                 <button class="ui tiny teal basic compact labeled icon button"><i class="eye icon"></i>{{ .RepoWatchers }}</button>
                             </a>
-                        {{ else }}
+                            {{ else }}
                             <button class="ui tiny disabled teal basic compact labeled icon button"><i class="star icon"></i>-</button>
                             <button class="ui tiny disabled teal basic compact labeled icon button"><i class="fork icon"></i>-</button>
                             <button class="ui tiny disabled teal basic compact labeled icon button"><i class="eye icon"></i>-</button>
-                        {{ end }}
+                            {{ end }}
                         </div>
                         {{ end }}
                     </div>
@@ -144,21 +131,79 @@
                 </div>
             </div>
         </div>
+
+        <div class="ui vertical stripe segment">
+            <div class="ui container">
+                <h3 class="ui header">Skills</h3>
+                <div class="ui fluid centered cards">
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header">
+                                Go
+                                <div class="ui right floated">
+                                    <span class="ui basic green circular label">Backend</span>
+                                    <span class="ui basic teal circular label">CLI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            Go is language I'm currently in love with. It is efficient, compiles to native binaries and has a really interesting concurrency model.
+                        </div>
+                    </div>
+                </div>
+                <div class="ui grid">
+                    <div class="eight wide column">
+                        <div>
+                            <b>Go</b>
+                            <span class="ui basic green circular label right floated">Backend</span>
+                            <span class="ui basic teal circular label right floated">CLI</span>
+                        </div>
+                        <div class="ui items">
+                            <div class="item">
+                                <div class="content">
+                                    <div class="header">
+                                        Go
+                                    </div>
+                                    <div class="meta">
+                                        <span class="ui basic green circular label right floated">Backend</span>
+                                        <span class="ui basic teal circular label">CLI</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="content">
+                                    <span class="header">Python</span>
+                                    <div class="meta">
+                                        <span class="ui basic green circular label">Backend</span>
+                                        <span class="ui basic teal circular label">CLI</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>Python was the first language I truly enjoyed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui vertical stripe segment">
+            <div class="ui container">
+                <h3 class="ui header">Projects</h3>
+            </div>
+        </div>
+
     </div>
     <script src="static/jquery.min.js"></script>
     <script src="static/semantic.min.js"></script>
     <script src="static/mo.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.masthead').visibility({
-                once: false,
-                onBottomPassed: function() {
-                    $('.fixed.menu').transition('fade in');
-                },
-                onBottomPassedReverse: function() {
-                    $('.fixed.menu').transition('fade out');
-                }
-            });
             $('.ui.sidebar').sidebar('attach events', '.toc.item');
             $('.with-popup').popup({
                 position: 'bottom center',
