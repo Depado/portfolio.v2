@@ -13,18 +13,6 @@
 </head>
 
 <body>
-    <!-- Sidebar Menu -->
-    <div class="ui vertical inverted sidebar menu">
-        <a class="active item">Home</a>
-        <a class="item">Work</a>
-        <a class="item">Company</a>
-        <a class="item">Careers</a>
-        <a class="item">Login</a>
-        <a class="item">Signup</a>
-    </div>
-
-
-    <!-- Page Contents -->
     <div class="pusher">
         <div class="ui inverted vertical masthead center aligned segment" id="burst">
             <div class="ui container">
@@ -67,6 +55,7 @@
         </div>
 
         {{ template "projects" . }}
+        {{ template "skills" }}
 
         <div class="ui vertical stripe segment">
             <div class="ui container">
@@ -140,20 +129,19 @@
     <script src="static/mo.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.ui.sidebar').sidebar('attach events', '.toc.item');
             $('.with-popup').popup({
                 position: 'bottom center',
             });
         });
 
-        var burstEl = document.getElementById('burst');
+        var el = document.getElementById('burst');
         setInterval(function() {
             var randomStrokeWidth = (10 + Math.random() * 10);
             var strokeWidth = {};
             strokeWidth[randomStrokeWidth] = 0;
 
             new mojs.Transit({
-                parent: burstEl,
+                parent: el,
                 type: 'circle',
                 radius: {
                     0: 30 + (Math.random() * 70)
