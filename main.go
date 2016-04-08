@@ -23,7 +23,7 @@ func main() {
 
 	go fetch.Start()
 
-	// gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	r.Static("/static", "assets")
 	r.LoadHTMLGlob("templates/*")
