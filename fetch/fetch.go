@@ -39,7 +39,7 @@ func Start() {
 	var err error
 	var resp *http.Response
 
-	tc := time.NewTicker(1 * time.Hour)
+	tc := time.NewTicker(30 * time.Minute)
 	for {
 		var all models.Services
 		if resp, err = http.Get(MONITROOT + "/api/dump/own"); err == nil {
