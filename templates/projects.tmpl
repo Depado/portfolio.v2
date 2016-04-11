@@ -18,51 +18,52 @@
         <br />
     </div>
     <div class="ui fluid centered cards">
-        <div class="ui card {{ if eq .Status 200 }}green{{ else if eq .URL "" }}green{{ else }}red{{ end }}">
         {{ range $index, $element := .services }}
-            <div class="content">
-                <img class="right floated mini ui image" {{ if .Icon }}src="{{ $.monit_root }}{{ .Icon }}" alt="{{ .Name }}" {{ end }}>
-                <div class="header"><a href="#" style="color: rgba(0,0,0,.85);">{{ .Name }}</a></div>
-                <div class="meta">
-                    {{ if eq .ShortURL "" }} - {{ else }}
-                    <a href="{{ .URL }}" target="_blank">{{ .ShortURL }}</a> {{ end }}
+            <div class="ui card {{ if eq .Status 200 }}green{{ else if eq .URL "" }}green{{ else }}red{{ end }}">
+                <div class="content">
+                    <img class="right floated mini ui image" {{ if .Icon }}src="{{ $.monit_root }}{{ .Icon }}" alt="{{ .Name }}" {{ end }}>
+                    <div class="header"><a href="#" style="color: rgba(0,0,0,.85);">{{ .Name }}</a></div>
+                    <div class="meta">
+                        {{ if eq .ShortURL "" }}-{{ else }}<a href="{{ .URL }}" target="_blank">{{ .ShortURL }}</a> {{ end }}
+                    </div>
+                    {{ if .Description }}
+                        <div class="description">
+                            {{ .Description }}
+                        </div>
+                    {{ end }}
                 </div>
-                {{ if .Description }}
-                <div class="description">{{ .Description }}</div>
+                {{ if or .RepoURL .LastBuild }}
+                <div class="extra content">
+                    {{ if .RepoURL }}
+                    <a href="{{ .RepoURL}}" target="_blank" style="color:#6A6AFF;"><i class="github alternate icon"></i> Repository</a>
+                    <br /> {{ else }}
+                    <i class="github alternate icon"></i> No Repository
+                    <br /> {{ end }} {{ if .LastBuild }} {{ if eq .LastBuild.Status "success" }}
+                    <a href="{{ .BuildURL }}" target="_blank" style="color:#21BA45;"><i class="configure icon"></i> Success</a> {{ else if eq .LastBuild.Status "pending"}}
+                    <a href="{{ .BuildURL }}" target="_blank" style="color:#ffb347;"><i class="configure icon"> Pending</i></a> {{ else if eq .LastBuild.Status "failure"}}
+                    <a href="{{ .BuildURL }}" target="_blank" style="color:#DB2828;"><i class="configure icon"></i> Failure</a> {{ else }}
+                    <i class="configure icon"></i> No Build {{ end }} {{ else }}
+                    <i class="configure icon"></i> No Build {{ end }}
+                </div>
+                <div class="extra content" style="text-align: center;">
+                    {{ if .RepoURL }}
+                    <a href="{{ .RepoURL }}/stargazers" target="_blank">
+                        <button class="ui tiny teal basic compact labeled icon button"><i class="star icon"></i>{{ .RepoStars }}</button>
+                    </a>
+                    <a href="{{ .RepoURL }}/network" target="_blank">
+                        <button class="ui tiny teal basic compact labeled icon button"><i class="fork icon"></i>{{ .RepoForks }}</button>
+                    </a>
+                    <a href="{{ .RepoURL }}/watchers" target="_blank">
+                        <button class="ui tiny teal basic compact labeled icon button"><i class="eye icon"></i>{{ .RepoWatchers }}</button>
+                    </a>
+                    {{ else }}
+                    <button class="ui tiny disabled teal basic compact labeled icon button"><i class="star icon"></i>-</button>
+                    <button class="ui tiny disabled teal basic compact labeled icon button"><i class="fork icon"></i>-</button>
+                    <button class="ui tiny disabled teal basic compact labeled icon button"><i class="eye icon"></i>-</button>
+                    {{ end }}
+                </div>
                 {{ end }}
             </div>
-            {{ if or .RepoURL .LastBuild }}
-            <div class="extra content">
-                {{ if .RepoURL }}
-                <a href="{{ .RepoURL}}" target="_blank" style="color:#6A6AFF;"><i class="github alternate icon"></i> Repository</a>
-                <br /> {{ else }}
-                <i class="github alternate icon"></i> No Repository
-                <br /> {{ end }} {{ if .LastBuild }} {{ if eq .LastBuild.Status "success" }}
-                <a href="{{ .BuildURL }}" target="_blank" style="color:#21BA45;"><i class="configure icon"></i> Success</a> {{ else if eq .LastBuild.Status "pending"}}
-                <a href="{{ .BuildURL }}" target="_blank" style="color:#ffb347;"><i class="configure icon"> Pending</i></a> {{ else if eq .LastBuild.Status "failure"}}
-                <a href="{{ .BuildURL }}" target="_blank" style="color:#DB2828;"><i class="configure icon"></i> Failure</a> {{ else }}
-                <i class="configure icon"></i> No Build {{ end }} {{ else }}
-                <i class="configure icon"></i> No Build {{ end }}
-            </div>
-            <div class="extra content" style="text-align: center;">
-                {{ if .RepoURL }}
-                <a href="{{ .RepoURL }}/stargazers" target="_blank">
-                    <button class="ui tiny teal basic compact labeled icon button"><i class="star icon"></i>{{ .RepoStars }}</button>
-                </a>
-                <a href="{{ .RepoURL }}/network" target="_blank">
-                    <button class="ui tiny teal basic compact labeled icon button"><i class="fork icon"></i>{{ .RepoForks }}</button>
-                </a>
-                <a href="{{ .RepoURL }}/watchers" target="_blank">
-                    <button class="ui tiny teal basic compact labeled icon button"><i class="eye icon"></i>{{ .RepoWatchers }}</button>
-                </a>
-                {{ else }}
-                <button class="ui tiny disabled teal basic compact labeled icon button"><i class="star icon"></i>-</button>
-                <button class="ui tiny disabled teal basic compact labeled icon button"><i class="fork icon"></i>-</button>
-                <button class="ui tiny disabled teal basic compact labeled icon button"><i class="eye icon"></i>-</button>
-                {{ end }}
-            </div>
-            {{ end }}
-        </div>
         {{ end }}
     </div>
 </div>
