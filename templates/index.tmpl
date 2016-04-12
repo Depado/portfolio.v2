@@ -13,6 +13,20 @@
 </head>
 
 <body>
+    <div class="ui top fixed hidden menu">
+        <div class="ui container">
+            <a class="item" href="#about">Me</a>
+            <a class="item" href="#projects">Projects</a>
+            <a class="item" href="#skills">Skills</a>
+            <a class="item" href="#experience">Experience</a>
+        </div>
+    </div>
+    <div class="ui vertical inverted sidebar menu">
+        <a class="item" href="#about">Me</a>
+        <a class="item" href="#projects">Projects</a>
+        <a class="item" href="#skills">Skills</a>
+        <a class="item" href="#experience">Experience</a>
+    </div>
     <div class="pusher">
         <div class="ui inverted vertical masthead center aligned segment" id="burst">
             <div class="ui container">
@@ -20,9 +34,10 @@
                     <a class="toc item">
                         <i class="sidebar icon"></i>
                     </a>
-                    <a class="item overanimate">Me</a>
-                    <a class="item overanimate">Projects</a>
-                    <a class="item overanimate">Experience</a>
+                    <a class="item" href="#about">Me</a>
+                    <a class="item" href="#projects">Projects</a>
+                    <a class="item" href="#skills">Skills</a>
+                    <a class="item" href="#experience">Experience</a>
                 </div>
             </div>
             <div class="ui text container">
@@ -53,7 +68,7 @@
             </div>
         </div>
 
-        <div class="ui vertical stripe segment">
+        <div class="ui vertical stripe segment" id="about">
             <div class="ui container">
                 <h3 class="ui header">About me</h3>
                 <p>
@@ -67,9 +82,7 @@
                 </p>
             </div>
         </div>
-        {{ template "projects" . }}
-        {{ template "skills" }}
-        {{ template "experience" }}
+        {{ template "projects" . }} {{ template "skills" }} {{ template "experience" }}
 
     </div>
     <script src="static/js/jquery.min.js"></script>
@@ -77,8 +90,34 @@
     <script src="static/js/mo.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Popup init
             $('.with-popup').popup({
                 position: 'bottom center',
+            });
+            // Following menu init
+            $('.masthead').visibility({
+                once: false,
+                onBottomPassed: function() {
+                    $('.fixed.menu').transition('fade in');
+                },
+                onBottomPassedReverse: function() {
+                    $('.fixed.menu').transition('fade out');
+                }
+            });
+            // Sidebar init
+            $('.ui.sidebar').sidebar('attach events', '.toc.item');
+            // Smooth scrolling init
+            $('a[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 500);
+                        return false;
+                    }
+                }
             });
         });
 
