@@ -22,7 +22,7 @@
             <div class="ui card {{ if eq .Status 200 }}green{{ else if eq .URL "" }}green{{ else }}red{{ end }}">
                 <div class="content">
                     <img class="right floated mini ui image" {{ if .Icon }}src="{{ $.monit_root }}{{ .Icon }}" alt="{{ .Name }}" {{ end }}>
-                    <div class="header"><a href="#" style="color: rgba(0,0,0,.85);">{{ .Name }}</a></div>
+                    <div class="header"><span style="color: rgba(0,0,0,.85);">{{ .Name }}</span></div>
                     <div class="meta">
                         {{ if eq .ShortURL "" }}-{{ else }}<a href="{{ .URL }}" target="_blank">{{ .ShortURL }}</a> {{ end }}
                     </div>
