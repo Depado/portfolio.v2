@@ -34,45 +34,54 @@ type LightService struct {
 // Current is the actual running services that are displayed on the website
 var Current []LightService
 
+// Do actually fetches the data source and parses it
+func Do() error {
+	var err error
+	var resp *http.Response
+	var all models.Services
+
+	if resp, err = http.Get(MONITROOT + "/api/dump/own"); err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	if err = json.NewDecoder(resp.Body).Decode(&all); err != nil {
+		return err
+	}
+
+	Current = []LightService{}
+	for _, s := range all {
+		new := LightService{
+			Name:         s.Name,
+			URL:          s.URL,
+			ShortURL:     s.ShortURL,
+			RepoURL:      s.RepoURL,
+			Host:         s.Host,
+			BuildURL:     s.BuildURL,
+			Status:       s.Status,
+			Icon:         s.Icon,
+			RepoStars:    s.RepoStars,
+			RepoForks:    s.RepoForks,
+			RepoWatchers: s.RepoWatchers,
+			Description:  s.Description,
+		}
+		if len(s.LastBuilds) > 0 {
+			new.LastBuild = s.LastBuilds[0]
+		}
+		if len(s.LastCommits) > 0 {
+			new.LastCommit = s.LastCommits[0]
+		}
+		Current = append(Current, new)
+	}
+	return nil
+}
+
 // Start starts the fetching of the data and retrieves data once every hour
 func Start() {
 	var err error
-	var resp *http.Response
 
 	tc := time.NewTicker(30 * time.Minute)
 	for {
-		var all models.Services
-		if resp, err = http.Get(MONITROOT + "/api/dump/own"); err == nil {
-			defer resp.Body.Close()
-			if err = json.NewDecoder(resp.Body).Decode(&all); err == nil {
-				Current = []LightService{}
-				for _, s := range all {
-					new := LightService{
-						Name:         s.Name,
-						URL:          s.URL,
-						ShortURL:     s.ShortURL,
-						RepoURL:      s.RepoURL,
-						Host:         s.Host,
-						BuildURL:     s.BuildURL,
-						Status:       s.Status,
-						Icon:         s.Icon,
-						RepoStars:    s.RepoStars,
-						RepoForks:    s.RepoForks,
-						RepoWatchers: s.RepoWatchers,
-						Description:  s.Description,
-					}
-					if len(s.LastBuilds) > 0 {
-						new.LastBuild = s.LastBuilds[0]
-					}
-					if len(s.LastCommits) > 0 {
-						new.LastCommit = s.LastCommits[0]
-					}
-					Current = append(Current, new)
-				}
-			} else {
-				log.Println(err)
-			}
-		} else {
+		if err = Do(); err != nil {
 			log.Println(err)
 		}
 		<-tc.C
