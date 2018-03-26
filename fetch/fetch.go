@@ -51,18 +51,21 @@ func Do() error {
 	Current = []LightService{}
 	for _, s := range all {
 		new := LightService{
-			Name:         s.Name,
-			URL:          s.URL,
-			ShortURL:     s.ShortURL,
-			RepoURL:      s.RepoURL,
-			Host:         s.Host,
-			BuildURL:     s.BuildURL,
-			Status:       s.Status,
-			Icon:         s.Icon,
-			RepoStars:    s.RepoStars,
-			RepoForks:    s.RepoForks,
-			RepoWatchers: s.RepoWatchers,
-			Description:  s.Description,
+			Name:     s.Name,
+			URL:      s.URL,
+			ShortURL: s.ShortURL,
+			Host:     s.Host,
+			Status:   s.Status,
+			Icon:     s.Icon,
+		}
+		if s.Repo != nil {
+			new.RepoURL = s.Repo.URL
+			new.RepoStars = s.Repo.Stars
+			new.RepoForks = s.Repo.Forks
+			new.RepoWatchers = s.Repo.Watchers
+		}
+		if s.CI != nil {
+			new.BuildURL = s.CI.URL
 		}
 		if len(s.LastBuilds) > 0 {
 			new.LastBuild = s.LastBuilds[0]
